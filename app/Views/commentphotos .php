@@ -15,7 +15,7 @@
           <tr>
             <th>No</th>
             <th>Photo</th>
-            <th>User id</th>
+            <th>User</th>
             <th>Comment</th>
 
             <th>Aksi</th>
