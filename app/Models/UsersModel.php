@@ -9,7 +9,7 @@ class UsersModel extends Model {
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
 	protected $allowedFields = ['fullname', 'username', 'password', 'email', 'address'];
-	protected $useTimestamps = false;
+	protected $useTimestamps = true;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';
 	protected $deletedField  = 'deleted_at';

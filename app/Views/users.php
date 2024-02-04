@@ -15,11 +15,9 @@
           <tr>
             <th>No</th>
             <th>Fullname</th>
-<th>Username</th>
-<th>Password</th>
-<th>Email</th>
-<th>Address</th>
-
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -32,60 +30,60 @@
 
 <!-- ADD modal content -->
 <div id="data-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
-        <div class="modal-content">
-            <div class="text-center bg-info p-3" id="model-header">
-                <h4 class="modal-title text-white" id="info-header-modalLabel"></h4>
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="text-center bg-info p-3" id="model-header">
+        <h4 class="modal-title text-white" id="info-header-modalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <form id="data-form" class="pl-3 pr-3">
+          <?= csrf_field() ?>
+          <div class="row">
+            <input type="hidden" id="id" name="id" class="form-control" placeholder="Id" required>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="fullname" class="col-form-label"> Fullname: <span class="text-danger">*</span> </label>
+                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Fullname" minlength="0" maxlength="100" required>
+              </div>
             </div>
-            <div class="modal-body">
-                <form id="data-form" class="pl-3 pr-3">
-                <?= csrf_field() ?>
-                <div class="row">
-<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" required>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group mb-3">
-									<label for="fullname" class="col-form-label"> Fullname: <span class="text-danger">*</span> </label>
-									<input type="text" id="fullname" name="fullname" class="form-control" placeholder="Fullname" minlength="0"  maxlength="100" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group mb-3">
-									<label for="username" class="col-form-label"> Username: <span class="text-danger">*</span> </label>
-									<input type="text" id="username" name="username" class="form-control" placeholder="Username" minlength="0"  maxlength="100" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group mb-3">
-									<label for="password" class="col-form-label"> Password: <span class="text-danger">*</span> </label>
-									<input type="password" id="password" name="password" class="form-control" placeholder="Password" minlength="0"  maxlength="100" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group mb-3">
-									<label for="email" class="col-form-label"> Email: <span class="text-danger">*</span> </label>
-									<input type="email" id="email" name="email" class="form-control" placeholder="Email" minlength="0"  maxlength="100" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group mb-3">
-									<label for="address" class="col-form-label"> Address: </label>
-									<textarea cols="40" rows="5" id="address" name="address" class="form-control" placeholder="Address" minlength="0"  ></textarea>
-								</div>
-							</div>
-						</div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="username" class="col-form-label"> Username: <span class="text-danger">*</span> </label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" minlength="0" maxlength="100" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="password" class="col-form-label"> Password: <span class="text-danger">*</span> </label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" minlength="0" maxlength="100" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="email" class="col-form-label"> Email: <span class="text-danger">*</span> </label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" minlength="0" maxlength="100" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="address" class="col-form-label"> Address: </label>
+                <textarea cols="40" rows="5" id="address" name="address" class="form-control" placeholder="Address" minlength="0"></textarea>
+              </div>
+            </div>
+          </div>
 
-                    <div class="form-group text-center">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success mr-2" id="form-btn"><?= lang("App.save") ?></button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= lang("App.cancel") ?></button>
-                        </div>
-                    </div>
-                </form>
+          <div class="form-group text-center">
+            <div class="btn-group">
+              <button type="submit" class="btn btn-success mr-2" id="form-btn"><?= lang("App.save") ?></button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= lang("App.cancel") ?></button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+          </div>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>
 <!-- /ADD modal content -->
 
@@ -94,32 +92,32 @@
 <!-- page script -->
 <?= $this->section("script") ?>
 <script>
-    let csrfHash = '<?= csrf_hash(); ?>'
-    let csrfToken = '<?= csrf_token(); ?>'
-    // dataTables
-    $(function() {
-        var table = $('#data_table').removeAttr('width').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "scrollY": '45vh',
-            "scrollX": true,
-            "scrollCollapse": false,
-            "responsive": false,
-            "ajax": {
-                "url": '<?php echo base_url($controller . "/getAll") ?>',
-                "type": "POST",
-                "dataType": "json",
-                "data":{
-                    [csrfToken]: csrfHash
-                },
-                async: "true"
-            }
-        });
+  let csrfHash = '<?= csrf_hash(); ?>'
+  let csrfToken = '<?= csrf_token(); ?>'
+  // dataTables
+  $(function() {
+    var table = $('#data_table').removeAttr('width').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "scrollY": '45vh',
+      "scrollX": true,
+      "scrollCollapse": false,
+      "responsive": false,
+      "ajax": {
+        "url": '<?php echo base_url($controller . "/getAll") ?>',
+        "type": "POST",
+        "dataType": "json",
+        "data": {
+          [csrfToken]: csrfHash
+        },
+        async: "true"
+      }
     });
+  });
 
   var urlController = '';
   var submitText = '';
@@ -136,7 +134,7 @@
     // reset the form 
     $("#data-form")[0].reset();
     $(".form-control").removeClass('is-invalid').removeClass('is-valid');
-    if (typeof id === 'undefined' ||id < 1) { //add
+    if (typeof id === 'undefined' || id < 1) { //add
       urlController = '<?= base_url($controller . "/add") ?>';
       submitText = '<?= lang("App.save") ?>';
       $("#info-header-modalLabel").text('<?= lang("App.add") ?>');
@@ -149,7 +147,7 @@
         url: '<?= base_url($controller . "/getOne") ?>',
         type: 'post',
         data: {
-         id:id,
+          id: id,
           [csrfToken]: csrfHash
         },
         dataType: 'json',
@@ -158,12 +156,12 @@
           $("#form-btn").text(submitText);
           $('#data-modal').modal('show');
           //insert data to form
-         			$("#data-form #id").val(response.id);
-			$("#data-form #fullname").val(response.fullname);
-			$("#data-form #username").val(response.username);
-			$("#data-form #password").val(response.password);
-			$("#data-form #email").val(response.email);
-			$("#data-form #address").val(response.address);
+          $("#data-form #id").val(response.id);
+          $("#data-form #fullname").val(response.fullname);
+          $("#data-form #username").val(response.username);
+          $("#data-form #password").val(response.password);
+          $("#data-form #email").val(response.email);
+          $("#data-form #address").val(response.address);
 
 
         }
@@ -280,7 +278,7 @@
           url: '<?php echo base_url($controller . "/remove") ?>',
           type: 'post',
           data: {
-           id:id,
+            id: id,
             [csrfToken]: csrfHash
           },
           dataType: 'json',

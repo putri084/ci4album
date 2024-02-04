@@ -44,10 +44,8 @@ class Users extends BaseController
 				$no,
 				$value->fullname,
 				$value->username,
-				$value->password,
 				$value->email,
 				$value->address,
-
 				$ops
 			);
 			$no++;
@@ -79,7 +77,7 @@ class Users extends BaseController
 		$fields['id'] = $this->request->getPost('id');
 		$fields['fullname'] = $this->request->getPost('fullname');
 		$fields['username'] = $this->request->getPost('username');
-		$fields['password'] = $this->request->getPost('password');
+		$fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
 		$fields['email'] = $this->request->getPost('email');
 		$fields['address'] = $this->request->getPost('address');
 
@@ -121,7 +119,7 @@ class Users extends BaseController
 		$fields['id'] = $this->request->getPost('id');
 		$fields['fullname'] = $this->request->getPost('fullname');
 		$fields['username'] = $this->request->getPost('username');
-		$fields['password'] = $this->request->getPost('password');
+		$fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
 		$fields['email'] = $this->request->getPost('email');
 		$fields['address'] = $this->request->getPost('address');
 
