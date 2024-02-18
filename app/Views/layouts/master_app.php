@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?= $title; ?> | SIM Pegawai <?= date('Y') ?></title>
+    <title><?= $title; ?> | Gallery <?= date('Y') ?></title>
     <!-- Vendors Style-->
     <link rel="stylesheet" href="/assets/css/vendors_css.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
@@ -33,8 +33,8 @@
                 <a href="index-2.html" class="logo">
                     <!-- logo-->
                     <div class="logo-lg justify-content-center align-items-center">
-                        <span class="light-logo text-bold"><img src="/assets/images/logo.png" class="p-2" style="margin-left: -30px;" height="50px" alt="logo"> SIM Pegawai</span>
-                        <span class="dark-logo text-bold"><img src="/assets/images/loho.png" class="p-2" style="margin-left: -30px;" height="50px" alt="logo"> SIM Pegawai</span>
+                        <span class="light-logo text-bold"><img src="/assets/images/putri.png" class="p-2" style="margin-left:-20px;" alt="logo"></span>
+                        <span class="dark-logo text-bold"><img src="/assets/images/putri.png" class="p-2" style="margin-left:-20px;" alt="logo"></span>
                     </div>
                 </a>
             </div>
@@ -125,15 +125,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="pegawai">
-                                    <i class="fad fa-user-tie"></i><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Data Pegawai<span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="skkerja">
-                                    <i class="fad fa-briefcase"></i><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Data SK Kerja<span>
+                                <a href="album">
+                                    <i class="fad fa-album"></i><span class="path1"></span><span class="path2"></span></i>
+                                    <span>Data Album<span>
                                 </a>
                             </li>
                         </ul>

@@ -8,7 +8,7 @@ class UsersModel extends Model {
 	protected $primaryKey = 'id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['fullname', 'username', 'password', 'email', 'address'];
+	protected $allowedFields = ['fullname', 'username', 'password', 'email', 'address', 'role'];
 	protected $useTimestamps = true;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

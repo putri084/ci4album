@@ -20,7 +20,6 @@ class Users extends BaseController
 
 	public function index()
 	{
-
 		$data = [
 			'controller'    	=> ucwords('users'),
 			'title'     		=> ucwords('users')
