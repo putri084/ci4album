@@ -175,7 +175,7 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer text-center">
-            &copy; <?= date('Y') ?> <a href="#"> SIM Pegawai</a>. All Rights Reserved.
+            &copy; <?= date('Y') ?> <a href="#"> APRILLIA GALLERY</a>. All Rights Reserved.
         </footer>
 
     </div>

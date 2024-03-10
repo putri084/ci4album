@@ -25,7 +25,7 @@
                             <img src="/assets/images/custom-14.svg" class="img-fluid max-w-150" alt="">
                             <div class="ms-30">
                                 <h4 class="mb-10b text-white">Selamat Datang <?= session()->get('nama') ?>  👋 </h4>
-                                <p class="mb-0 text-fade">SIM Pegawai <?= date('Y') ?> </p>
+                                <p class="mb-0 text-fade">APRILLIA GALLERY <?= date('Y') ?> </p>
                             </div>
                         </div>
                         <div>

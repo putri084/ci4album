@@ -8,4 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Login::index');
+$routes->get('/add-photo', 'Home::create_photo');
+$routes->post('/add-photo', 'Home::add_photo');
+$routes->get('/add-album', 'Home::create_album');
+$routes->post('/add-album', 'Home::add_album');
 $routes->get('/logout', 'Login::logout');

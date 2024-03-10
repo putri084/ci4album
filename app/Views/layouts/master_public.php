@@ -11,7 +11,7 @@
     <meta name="description" content>
     <meta name="keywords" content>
 
-    <title>Netox - NFT Marketplace HTML5 Template</title>
+    <title>UKK APRIL</title>
 
     <link rel="icon" type="image/x-icon" href="/public/img/logo/favicon.png">
 
