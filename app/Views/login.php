@@ -22,9 +22,9 @@
                     <p>Login with your netox account</p>
                 </div> -->
                 <div class="auth-form">
-                    <form action="#" id="loginForm">
+                    <form id="loginForm">
                         <div class="form-group">
-                            <label>Email Address</label>
+                            <label>Email Address / Username</label>
                             <input type="text" name="login" class="form-control" placeholder="Your Email/Username">
                         </div>
                         <div class="form-group">
@@ -47,11 +47,11 @@
                     </form>
                     <div class="auth-footer">
                         <div class="auth-social">
-                            <span class="auth-divider">or</span>
+                            <!-- <span class="auth-divider">or</span>
                             <div class="auth-social-list d-block w-100">
                                 <a href="javascript:void(0);" class="auth-gl w-100" id="google-sign-in-button"><i class="fab fa-google"></i>Sign In With Google</a>
                             </div>
-                        </div>
+                        </div> -->
                         <p>Don't have an account? <a href="register.html">Sign Up.</a></p>
                     </div>
                 </div>

@@ -22,6 +22,7 @@
             <div class="col-lg-7 col-xl-8">
                 <div class="create-form">
                     <form action="<?= base_url('add-album') ?>" method="POST">
+                    <input type="hidden" name="user_id" value="<?= session()->get('id') ?>">
                         <?= csrf_field() ?>
                         <div class="form-group">
                             <label>Category</label>

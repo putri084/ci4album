@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CategoryModel;
 use App\Models\AlbumModel;
 use App\Models\PhotosModel;
+use App\Models\CommentphotosModel;
 
 class Home extends BaseController
 {
@@ -30,6 +31,7 @@ class Home extends BaseController
     public function add_album()
     {
         $albumData = [
+            'user_id'   => request()->getPost('user_id'),
             'album_name' => request()->getPost('album_name'),
             'description' => request()->getPost('description'),
             'category_id' => request()->getPost('category_id')
@@ -91,18 +93,63 @@ class Home extends BaseController
         return redirect()->to('/');
     }
 
-    public function getAlbumByCategory($cat_id) {
+    public function getAllAlbum()
+    {
+        $db = db_connect();
+        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname')
+            ->join('users', 'users.id = album.user_id')
+            ->get()
+            ->getResultArray();
+        $res2 = $db->table('photos')->get()->getResultArray();
+        echo json_encode(
+            [
+                'album' => $res1,
+                'photos' => $res2
+            ]
+        );
+    }
+
+    function sendComment() {
+
+        $comment = new CommentphotosModel();
+        $comment->insert([
+            'photo_id'  => request()->getPost('photo_id'),
+            'user_id'   => session()->get('id'),
+            'comment'   => request()->getPost('comment')
+        ]);
+
+        echo json_encode(['message' => 'success']);
+    }
+
+
+    function getComment($pId) {
+        $db = db_connect();
+
+        $res = $db->table('comment_photos')
+        ->select('comment_photos.*, users.username')
+        ->join('users', 'users.id = comment_photos.user_id')
+        ->where('photo_id', $pId)
+        ->orderBy('comment_photos.created_at', 'DESC') // Mengurutkan berdasarkan created_at dari yang terbaru
+        ->get()
+        ->getResultArray();
+    
+
+        echo json_encode(['comment' => $res]);
+    }
+
+
+
+    public function getAlbumByCategory($cat_id)
+    {
         $db = db_connect();
 
         $res = $db->table('photos')->select('album.album_name, users.username, photo_name, photos.description, location, photos.created_at')
-        ->join('album', 'album.id = photos.album_id')
-        ->join('users', 'users.id = photos.user_id')
-        ->where('album.category_id' , $cat_id)
-        ->get()
-        ->getResultObject();
+            ->join('album', 'album.id = photos.album_id')
+            ->join('users', 'users.id = album.user_id')
+            ->where('album.category_id', $cat_id)
+            ->get()
+            ->getResultObject();
 
         echo json_encode($res);
-
     }
-
 }

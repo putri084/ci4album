@@ -8,7 +8,7 @@ class AlbumModel extends Model {
 	protected $primaryKey = 'id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['album_name', 'description', 'category_id'];
+	protected $allowedFields = ['album_name', 'description', 'category_id', 'user_id'];
 	protected $useTimestamps = true;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

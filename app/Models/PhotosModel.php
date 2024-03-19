@@ -8,7 +8,7 @@ class PhotosModel extends Model {
 	protected $primaryKey = 'id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['photo_name', 'album_id', 'user_id', 'description', 'location'];
+	protected $allowedFields = ['photo_name', 'album_id', 'description', 'location'];
 	protected $useTimestamps = true;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

@@ -9,6 +9,7 @@ use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\LoginFilter;
+use App\Filters\AdminFilter;
 
 class Filters extends BaseConfig
 {
@@ -25,7 +26,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'login'         => LoginFilter::class  // gunanya untuk buat filter url mana aja yang mesti login
+        'login'         => LoginFilter::class,  // gunanya untuk buat filter url mana aja yang mesti login
+        'admin'         => AdminFilter::class  
     ];
 
     /**
@@ -37,6 +39,15 @@ class Filters extends BaseConfig
     public array $globals = [
         // kalo dibuat disiini 'login' maka semua url yang diakses mesti login dulu baru bisa akes
         'before' => [
+            // 'login' => [
+            //     'except' => [
+            //         'login',
+            //         'login/ceklogin',
+            //         'logout',
+            //         '/'
+
+            //     ]
+            // ]
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

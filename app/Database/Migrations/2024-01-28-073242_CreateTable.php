@@ -57,6 +57,11 @@ class CreateTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'user_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
+            ],
             'album_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '100',
@@ -76,6 +81,7 @@ class CreateTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('album');
 
         // make migration for foto table
@@ -87,11 +93,6 @@ class CreateTable extends Migration
                 'auto_increment' => true,
             ],
             'album_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-            ],
-            'user_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
@@ -120,7 +121,6 @@ class CreateTable extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('album_id', 'album', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('photos');
 
         // make migration for komentar_foto table

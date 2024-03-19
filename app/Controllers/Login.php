@@ -46,44 +46,14 @@ class Login extends BaseController
             'username' => $findUser->username,
             'email' => $findUser->email,
             'address' => $findUser->address,
-            'role' => $findUser->role,
+            'role' => $findUser->role == 0 ? 'user' : 'admin',
             'isLogin' => true, 
             'id' => $findUser->id
         ]);
-        /// isLogin berfungsi untuk di LoginFilter supaya deteksi apakah dia sudah login atau belum & nilainya boolean
-        
-        // lalu bakal ngecek perannya
-        if($findUser->role == 0) {
-            $data = [
-                'message' => 'success',
-                'role' => 'user'
-            ];
-        } else {
-            $data = [
-                'message' => 'success',
-                'role' => 'admin'
-            ];
-        }
 
-        echo json_encode($data);
+        echo json_encode(['message' =>'success']);
     }
 
-    public function set_google_session(){
-        session_start();
-
-        // Menerima data dari JavaScript
-        $data = json_decode(file_get_contents('php://input'), true);
-        
-        // Mengatur session user
-        $_SESSION['user'] = array(
-            'displayName' => $data['displayName'],
-            'email' => $data['email'],
-            'photoUrl' => $data['photoUrl']
-        );
-        
-        // Mengirim status 200 (OK) ke JavaScript
-        http_response_code(200);
-    }
 
     public function logout()
     {

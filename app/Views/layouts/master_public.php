@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="/public/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/public/css/nice-select.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
+    <!-- jQuery Scrollbar Plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollbar/0.2.11/jquery.scrollbar.min.css">
+    <style>
+        .item-bid-summary {
+            max-height: 300px;
+            /* Atur tinggi maksimum */
+            overflow-y: auto;
+            /* Biarkan konten scrollable jika melebihi tinggi maksimum */
+        }
+    </style>
 </head>
 
 <body>
@@ -126,7 +136,7 @@
                                 </div>
                             </div>
                             <div class="nav-right-btn">
-                                <a href="#" class="theme-btn"><span class="far fa-sign-in"></span>Login</a>
+                                <a href="<?= base_url('login') ?>" class="theme-btn"><span class="far fa-sign-in"></span>Login</a>
                             </div>
 
                             <div class="nav-profile dropdown">
@@ -188,39 +198,25 @@
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
 
-    <div class="modal fade item-bid-modal" id="placebid" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal fade item-bid-modal" id="modal-komentar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark"></i></button>
                 <div class="modal-body">
                     <div class="item-bid-form">
-                        <h4>Place A Bid</h4>
-                        <form action="#">
-                            <p>You Must Bid At Least <span>25.50 ETH</span></p>
+                        <h4>Tambah Komentar</h4>
+                        <form action="#" id="komentar">
+                            <input type="hidden" id="photo-id">
+                            <input type="hidden" name="user_id" value="<?= session()->get('id') ?>">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="00.00 ETH">
+                                <textarea type="text" class="form-control" name="comment" id="comment-type" placeholder="Masukkan komentar..."></textarea>
                             </div>
-                            <p>Your Bid Quantity (<span>10 Available</span>)</p>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="1">
-                            </div>
-                            <div class="item-bid-summary">
-                                <div class="summary-item">
-                                    <span>Minimum Bid Amount:</span>
-                                    <strong>25.60 ETH</strong>
-                                </div>
-                                <div class="summary-item">
-                                    <span>Service Fee:</span>
-                                    <strong>5.50 ETH</strong>
-                                </div>
-                                <div class="summary-item">
-                                    <span>Total Bid Amount:</span>
-                                    <strong>31.00 ETH</strong>
-                                </div>
+                            <div class="item-bid-summary" id="message-comment">
+
                             </div>
                             <div class="text-center mt-40">
-                                <button class="theme-btn" type="submit"><span class="far fa-shopping-bag"></span>
-                                    Confirm Bid</button>
+                                <button class="theme-btn" type="button" onclick="sendComment()"><span class="far fa-paper-plane"></span>
+                                    Send</button>
                             </div>
                         </form>
                     </div>
@@ -244,6 +240,14 @@
     <script src="/public/js/countdown.min.js"></script>
     <script src="/public/js/jquery.nice-select.min.js"></script>
     <script src="/public/js/main.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollbar/0.2.11/jquery.scrollbar.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.item-bid-summary').scrollbar(); // Inisialisasi scrollbar menggunakan plugin jQuery
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?= $this->renderSection('script') ?>
     <script type="module">
