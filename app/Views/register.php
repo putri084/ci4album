@@ -75,20 +75,18 @@
             dataType: "JSON",
             success: function(response) {
 
-                if (response.message == 'success') {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Berhasil Registrasi",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Berhasil Registrasi",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
 
-                    setInterval(() => {
-                        window.location.href = "<?= base_url(""); ?>"
-                    }, 1500);
+                setInterval(() => {
+                    window.location.href = "<?= base_url(""); ?>"
+                }, 1500);
 
-                }
             }
         });
 

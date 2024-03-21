@@ -9,7 +9,7 @@ class LikephotosModel extends Model {
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
 	protected $allowedFields = ['photo_id', 'user_id'];
-	protected $useTimestamps = false;
+	protected $useTimestamps = true;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';
 	protected $deletedField  = 'deleted_at';

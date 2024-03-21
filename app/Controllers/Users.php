@@ -20,6 +20,7 @@ class Users extends BaseController
 
 	public function index()
 	{
+
 		$data = [
 			'controller'    	=> ucwords('users'),
 			'title'     		=> ucwords('users')
@@ -41,10 +42,14 @@ class Users extends BaseController
 			$ops .= '</div>';
 			$data['data'][$key] = array(
 				$no,
+				$value->id,
 				$value->fullname,
 				$value->username,
+				$value->avatar,
 				$value->email,
 				$value->address,
+				$value->role,
+
 				$ops
 			);
 			$no++;
@@ -76,17 +81,21 @@ class Users extends BaseController
 		$fields['id'] = $this->request->getPost('id');
 		$fields['fullname'] = $this->request->getPost('fullname');
 		$fields['username'] = $this->request->getPost('username');
-		$fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
+		$fields['password'] = $this->request->getPost('password');
+		$fields['avatar'] = $this->request->getPost('avatar');
 		$fields['email'] = $this->request->getPost('email');
 		$fields['address'] = $this->request->getPost('address');
+		$fields['role'] = $this->request->getPost('role');
 
 
 		$this->validation->setRules([
 			'fullname' => ['label' => 'Fullname', 'rules' => 'required|min_length[0]|max_length[100]'],
 			'username' => ['label' => 'Username', 'rules' => 'required|min_length[0]|max_length[100]'],
 			'password' => ['label' => 'Password', 'rules' => 'required|min_length[0]|max_length[100]'],
+			'avatar' => ['label' => 'Avatar', 'rules' => 'required|min_length[0]|max_length[200]'],
 			'email' => ['label' => 'Email', 'rules' => 'required|valid_email|min_length[0]|max_length[100]'],
 			'address' => ['label' => 'Address', 'rules' => 'permit_empty|min_length[0]'],
+			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]'],
 
 		]);
 
@@ -118,17 +127,21 @@ class Users extends BaseController
 		$fields['id'] = $this->request->getPost('id');
 		$fields['fullname'] = $this->request->getPost('fullname');
 		$fields['username'] = $this->request->getPost('username');
-		$fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
+		$fields['password'] = $this->request->getPost('password');
+		$fields['avatar'] = $this->request->getPost('avatar');
 		$fields['email'] = $this->request->getPost('email');
 		$fields['address'] = $this->request->getPost('address');
+		$fields['role'] = $this->request->getPost('role');
 
 
 		$this->validation->setRules([
 			'fullname' => ['label' => 'Fullname', 'rules' => 'required|min_length[0]|max_length[100]'],
 			'username' => ['label' => 'Username', 'rules' => 'required|min_length[0]|max_length[100]'],
 			'password' => ['label' => 'Password', 'rules' => 'required|min_length[0]|max_length[100]'],
+			'avatar' => ['label' => 'Avatar', 'rules' => 'required|min_length[0]|max_length[200]'],
 			'email' => ['label' => 'Email', 'rules' => 'required|valid_email|min_length[0]|max_length[100]'],
 			'address' => ['label' => 'Address', 'rules' => 'permit_empty|min_length[0]'],
+			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]'],
 
 		]);
 

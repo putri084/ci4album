@@ -20,6 +20,8 @@ class Login extends BaseController
     {
         if (session()->get('isLogin') == true && session()->get('role') == 'admin') {
             return redirect('dashboard');
+        } else if (session()->get('isLogin') == true && session()->get('role') == 'user') {
+            return redirect()->to('/');
         }
         $data = [
             'title' => 'Login'

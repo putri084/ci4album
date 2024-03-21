@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="item-bottom">
-                        <a href="#" class="item-like"><i class="far fa-heart"></i>1.25k</a>
+                        <a href="javascript:void(0)" class="item-like"><i class="far fa-heart"  onclick="sendLike(${response.photos[j].id})"></i><span id="like-photo-${response.photos[j].id}">0</span></a>
                         <a href="javascript:void(0)" class="theme-btn btn-sm" onclick="setComment(${response.photos[j].id})">
                             <span class="far fa-comments"></span>
                         </a>
@@ -135,7 +135,7 @@
     </div>`;
                 }
                 $("#konten").html(html);
-
+                callGetCountLike(response.photos[0].id)
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("Status: " + textStatus);
@@ -146,18 +146,62 @@
 
     setAllAlbum()
 
+    let sesiLogin = <?= session()->has('isLogin') ? 'true' : 'false' ?>
+
     function sendComment() {
+        if (sesiLogin == true) {
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('home/sendComment') ?>",
+                data: {
+                    photo_id: $("#photo-id").val(),
+                    comment: $("#comment-type").val()
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    $('#comment-type').val('')
+                    callGetComment($("#photo-id").val())
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        } else {
+            alert("Silahkan login dulu")
+        }
+
+    }
+
+    function sendLike(pId) {
+        if (sesiLogin == true) {
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('home/sendLike') ?>/" + pId,
+                dataType: "JSON",
+                success: function(response) {
+                    callGetCountLike(pId);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", error); // Tampilkan error pada konsol
+                    // Lakukan sesuatu dengan error jika diperlukan
+                }
+            });
+
+        } else {
+            alert("Silahkan login dulu")
+        }
+
+    }
+
+    function callGetCountLike(pId) {
         $.ajax({
             type: "POST",
-            url: "<?= base_url('home/sendComment') ?>",
-            data: {
-                photo_id: $("#photo-id").val(),
-                comment: $("#comment-type").val()
-            },
+            url: "<?= base_url('home/getCountLike') ?>/" + pId,
             dataType: "JSON",
             success: function(response) {
-                $('#comment-type').val('')
-                callGetComment($("#photo-id").val())
+                console.log(response)
+                $('#like-photo-' + pId + '').html(response.count)
             }
         });
     }

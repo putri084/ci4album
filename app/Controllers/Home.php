@@ -6,12 +6,14 @@ use App\Models\CategoryModel;
 use App\Models\AlbumModel;
 use App\Models\PhotosModel;
 use App\Models\CommentphotosModel;
+use App\Models\LikephotosModel;
 
 class Home extends BaseController
 {
     public function index()
     {
         $data = [
+            'user' => '<span class="far fa-sign-in"></span>Login',
             'category' => (new CategoryModel())->findAll(),
             'photos' => (new PhotosModel())->findAll()
         ];
@@ -96,20 +98,23 @@ class Home extends BaseController
     public function getAllAlbum()
     {
         $db = db_connect();
-        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname')
+        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname, users.id as user_id')
             ->join('users', 'users.id = album.user_id')
             ->get()
             ->getResultArray();
         $res2 = $db->table('photos')->get()->getResultArray();
+        $res3 = $db->table('like_photos')->get()->getResultArray();
         echo json_encode(
             [
                 'album' => $res1,
-                'photos' => $res2
+                'photos' => $res2,
+                'like' => $res3
             ]
         );
     }
 
-    function sendComment() {
+    function sendComment()
+    {
 
         $comment = new CommentphotosModel();
         $comment->insert([
@@ -121,20 +126,49 @@ class Home extends BaseController
         echo json_encode(['message' => 'success']);
     }
 
+    function sendLike($pId)
+    {
+        $photo = new LikephotosModel();
+        if (count($photo->where('photo_id', $pId)->where('user_id', session()->get('id'))->get()->getResultArray()) > 0) {
+            $photo->where('photo_id', $pId)->where('user_id', session()->get('id'))->delete();
+        } else {
+            $photo->insert([
+                'photo_id'  => $pId,
+                'user_id'   => session()->get('id')
+            ]);
+        }
 
-    function getComment($pId) {
+        echo json_encode(['message' => 'success']);
+    }
+
+
+    function getComment($pId)
+    {
         $db = db_connect();
 
         $res = $db->table('comment_photos')
-        ->select('comment_photos.*, users.username')
-        ->join('users', 'users.id = comment_photos.user_id')
-        ->where('photo_id', $pId)
-        ->orderBy('comment_photos.created_at', 'DESC') // Mengurutkan berdasarkan created_at dari yang terbaru
-        ->get()
-        ->getResultArray();
-    
+            ->select('comment_photos.*, users.username')
+            ->join('users', 'users.id = comment_photos.user_id')
+            ->where('photo_id', $pId)
+            ->orderBy('comment_photos.created_at', 'DESC') // Mengurutkan berdasarkan created_at dari yang terbaru
+            ->get()
+            ->getResultArray();
+
 
         echo json_encode(['comment' => $res]);
+    }
+
+    function getCountLike($pId)
+    {
+        $db = db_connect();
+
+        $res = $db->table('like_photos')
+            ->select('count(*) as count')
+            ->where('photo_id', $pId)
+            ->get()
+            ->getRow();
+
+        echo json_encode($res);
     }
 
 

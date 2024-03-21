@@ -14,10 +14,13 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Id</th>
             <th>Fullname</th>
             <th>Username</th>
+            <th>Avatar</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Role</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -62,6 +65,12 @@
             </div>
             <div class="col-md-12">
               <div class="form-group mb-3">
+                <label for="avatar" class="col-form-label"> Avatar: <span class="text-danger">*</span> </label>
+                <input type="text" id="avatar" name="avatar" class="form-control" placeholder="Avatar" minlength="0" maxlength="200" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
                 <label for="email" class="col-form-label"> Email: <span class="text-danger">*</span> </label>
                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" minlength="0" maxlength="100" required>
               </div>
@@ -70,6 +79,15 @@
               <div class="form-group mb-3">
                 <label for="address" class="col-form-label"> Address: </label>
                 <textarea cols="40" rows="5" id="address" name="address" class="form-control" placeholder="Address" minlength="0"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label for="role" class="col-form-label"> Role: <span class="text-danger">*</span> </label>
+                <select id="role" name="role" class="form-control select2" style="width: 100%;" required>
+                  <option value="0">User</option>
+                  <option value="1">Admin</option>
+                </select>
               </div>
             </div>
           </div>
@@ -160,8 +178,10 @@
           $("#data-form #fullname").val(response.fullname);
           $("#data-form #username").val(response.username);
           $("#data-form #password").val(response.password);
+          $("#data-form #avatar").val(response.avatar);
           $("#data-form #email").val(response.email);
           $("#data-form #address").val(response.address);
+          $("#data-form #role").val(response.role);
 
 
         }

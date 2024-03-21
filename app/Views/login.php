@@ -52,7 +52,7 @@
                                 <a href="javascript:void(0);" class="auth-gl w-100" id="google-sign-in-button"><i class="fab fa-google"></i>Sign In With Google</a>
                             </div>
                         </div> -->
-                        <p>Don't have an account? <a href="register.html">Sign Up.</a></p>
+                        <p>Don't have an account? <a href="<?= base_url('register') ?>">Sign Up.</a></p>
                     </div>
                 </div>
             </div>

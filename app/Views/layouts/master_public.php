@@ -136,7 +136,18 @@
                                 </div>
                             </div>
                             <div class="nav-right-btn">
-                                <a href="<?= base_url('login') ?>" class="theme-btn"><span class="far fa-sign-in"></span>Login</a>
+                                <a href="<?= base_url('login') ?>" class="theme-btn">
+                                    <?php
+                                    if (session()->has('id')) {
+                                        echo session()->get('fullname');
+                                    } else {
+                                        echo '<span class="far fa-sign-in"></span>Login';
+                                    }
+                                    ?>
+                                </a>
+                                <?php if (session()->has('id')) : ?>
+                                    <a href="<?= base_url('logout') ?>" class="theme-btn theme-btn2">Logout</a>
+                                <?php endif; ?>
                             </div>
 
                             <div class="nav-profile dropdown">

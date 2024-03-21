@@ -119,9 +119,15 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="category">
+                                    <i class="fad fa-list"></i><span class="path1"></span><span class="path2"></span></i>
+                                    <span>Data Cateegory</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="users">
                                     <i class="fad fa-users"></i><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Data Pengguna</span>
+                                    <span>Data Users</span>
                                 </a>
                             </li>
                             <li>

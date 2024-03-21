@@ -18,7 +18,11 @@ class Register extends BaseController
     }
     public function index()
     {
-        return view('register');
+        $data = [
+			'controller'    	=> ucwords('register'),
+			'title'     		=> ucwords('register')
+		];
+        return view('register', $data);
     }
 
     public function add()
@@ -27,6 +31,7 @@ class Register extends BaseController
         $fields['username'] = $this->request->getPost('username');
         $fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
         $fields['email'] = $this->request->getPost('email');
+        $fields['role'] = 0;
         $fields['address'] = $this->request->getPost('address');
 
         $this->validation->setRules([
