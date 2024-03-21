@@ -55,21 +55,6 @@
                     </a>
 
                     <div class="mobile-menu-right">
-                        <div class="nav-search-wrap">
-                            <div class="search-btn">
-                                <button type="button" class="nav-right-link search-box-outer"><i class="feather-search"></i></button>
-                            </div>
-
-                            <div class="search-area">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Type Keyword...">
-                                        <button type="submit" class="search-icon-btn"><i class="feather-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
                         <div class="color-mode theme-mode-control">
                             <button type="button" class="nav-right-link light-btn"><i class="feather-sun"></i></button>
                             <button type="button" class="nav-right-link dark-btn"><i class="feather-moon"></i></button>
@@ -120,22 +105,17 @@
                         </button>
                     </div>
 
-                    <div class="collapse navbar-collapse" id="main_nav">
-                        <ul style="width:55%;">
-                            <li class="nav-item" style="padding-left: 20px;"><a class="nav-link" href="contact.html">Explore</a></li>
+                    <div class="collapse navbar-collapse mx-4">
+                        <ul class="d-flex justify-content-center align-item-center">
+                            <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Explore</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?= base_url('my-photos') ?>">My Photos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?= base_url('add-photo') ?>">Add Photo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?= base_url('add-album') ?>">Add Album</a></li>
                         </ul>
+                    </div>
+                    <div class="collapse navbar-collapse mx-4" style="justify-content: flex-end;">
                         <div class="nav-right">
-                            <div class="nav-right-search">
-                                <div class="search-form">
-                                    <form action="#">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Type keyword...">
-                                            <button type="button"><i class="feather-search"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="nav-right-btn">
+                            <div class="nav-right-btn ">
                                 <a href="<?= base_url('login') ?>" class="theme-btn">
                                     <?php
                                     if (session()->has('id')) {
