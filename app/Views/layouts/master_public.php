@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/public/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/public/css/nice-select.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- jQuery Scrollbar Plugin -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollbar/0.2.11/jquery.scrollbar.min.css">
     <style>
@@ -36,6 +38,19 @@
 </head>
 
 <body>
+    <?php if (session()->has('pesan')) : ?>
+  <script>
+            function errorSwal() {
+                Swal.fire({
+                    icon: 'error',
+                    title: '<?= session()->getFlashdata('pesan') ?>',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            }
+            errorSwal()
+        </script>
+    <?php endif; ?>
 
     <div class="preloader">
         <div class="loader-ripple">
@@ -111,6 +126,9 @@
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('my-photos') ?>">My Photos</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('add-photo') ?>">Add Photo</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('add-album') ?>">Add Album</a></li>
+                            <?php if(session()->get('role') == 'admin') : ?>
+                            <li class="nav-item"><a class="nav-link" href="<?= base_url('dashboard') ?>">Dashboard</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <div class="collapse navbar-collapse mx-4" style="justify-content: flex-end;">
@@ -141,7 +159,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-             
+
                                     <li><a class="dropdown-item" href="javascript:void(0);" id="logout-button"><i class="far fa-sign-out"></i>Log Out</a>
                                     </li>
                                 </ul>
@@ -236,7 +254,6 @@
             $('.item-bid-summary').scrollbar(); // Inisialisasi scrollbar menggunakan plugin jQuery
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?= $this->renderSection('script') ?>
     <script type="module">
         // Import the functions you need from the SDKs you need

@@ -26,7 +26,8 @@ class AdminFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('role') == 'admin') {
-            echo json_encode("access denied!");
+            session()->setFlashdata('pesan', 'Anda tidak memiliki akses');
+            return redirect()->to('/'); // redirect ke halam
         }
     }
 
