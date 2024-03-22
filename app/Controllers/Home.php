@@ -45,7 +45,7 @@ class Home extends BaseController
     public function create_photo()
     {
         $data = [
-            'album' => (new AlbumModel())->findAll()
+            'album' => (new AlbumModel())->where('user_id', session()->get('id'))->findAll()
         ];
 
         // dd($data);
