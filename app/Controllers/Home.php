@@ -86,7 +86,8 @@ class Home extends BaseController
             'user_id'   => $this->request->getVar('user_id'),
             'photo_name' => $this->request->getVar('photo_name'),
             'description' => $this->request->getVar('description'),
-            'location' => $newName
+            'location' => $newName,
+            'url_title' => url_title(strtolower($this->request->getVar('photo_name')))
         ];
 
         $photoModel->save($data);
@@ -95,11 +96,76 @@ class Home extends BaseController
         return redirect()->to('/');
     }
 
+
+    public function remove_album($album_id)
+    {
+        $albumModel = new AlbumModel();
+        $photoModel = new PhotosModel();
+
+        // Dapatkan semua foto yang terkait dengan album ini
+        $photos = $photoModel->where('album_id', $album_id)->findAll();
+
+        // Hapus setiap foto dari penyimpanan fisik dan database
+        foreach ($photos as $photo) {
+            $this->remove_photo($photo['id']);
+        }
+
+        // Hapus album dari database
+        $albumModel->delete($album_id);
+
+        echo json_encode(['message' => 'success']);
+    }
+
+    public function remove_photo($photo_id)
+    {
+        $photoModel = new PhotosModel();
+        $photo = $photoModel->find($photo_id);
+
+        if (!$photo) {
+            echo json_encode(['message' => 'Photo not found']);
+            return;
+        }
+
+        // Hapus foto dari penyimpanan fisik
+        $path = 'uploads/' . $photo->location;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        // Hapus foto dari database
+        $photoModel->delete($photo_id);
+
+        echo json_encode(['message' => 'success']);
+    }
+
+
+
+
     public function getAllAlbum()
     {
         $db = db_connect();
         $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname, users.id as user_id')
             ->join('users', 'users.id = album.user_id')
+            ->get()
+            ->getResultArray();
+        $res2 = $db->table('photos')->get()->getResultArray();
+        $res3 = $db->table('like_photos')->get()->getResultArray();
+        echo json_encode(
+            [
+                'album' => $res1,
+                'photos' => $res2,
+                'like' => $res3
+            ]
+        );
+    }
+
+
+    public function getAllAlbumMe()
+    {
+        $db = db_connect();
+        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname, users.id as user_id')
+            ->join('users', 'users.id = album.user_id')
+            ->where('album.user_id', session()->get('id'))
             ->get()
             ->getResultArray();
         $res2 = $db->table('photos')->get()->getResultArray();

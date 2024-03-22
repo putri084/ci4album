@@ -141,10 +141,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="far fa-user-tie"></i>My Profile</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#"><i class="far fa-cog"></i>Account Setting</a>
-                                    </li>
+             
                                     <li><a class="dropdown-item" href="javascript:void(0);" id="logout-button"><i class="far fa-sign-out"></i>Log Out</a>
                                     </li>
                                 </ul>

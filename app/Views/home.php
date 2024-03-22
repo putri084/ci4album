@@ -100,7 +100,7 @@
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="item">
                     <div class="item-img" style="max-height:200px;">
-                        <a href="#"><img src="/uploads/${response.photos[j].location}" alt></a>
+                        <a href="<?=base_url() ?>detailfoto/${response.photos[j].url_title}"><img src="/uploads/${response.photos[j].location}" alt></a>
                     </div>
                     <div class="item-content">
                         <h4 class="item-title"><a href="#">${response.photos[j].photo_name}</a></h4>
