@@ -144,10 +144,7 @@ class Home extends BaseController
     public function getAllAlbum()
     {
         $db = db_connect();
-        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname, users.id as user_id')
-            ->join('users', 'users.id = album.user_id')
-            ->get()
-            ->getResultArray();
+        $res1 = $db->table('vw_album')->get()->getResultArray();
         $res2 = $db->table('photos')->get()->getResultArray();
         $res3 = $db->table('like_photos')->get()->getResultArray();
         echo json_encode(
@@ -163,11 +160,7 @@ class Home extends BaseController
     public function getAllAlbumMe()
     {
         $db = db_connect();
-        $res1 = $db->table('album')->select('album.id as id,album.album_name, users.username, users.avatar, users.fullname, users.id as user_id')
-            ->join('users', 'users.id = album.user_id')
-            ->where('album.user_id', session()->get('id'))
-            ->get()
-            ->getResultArray();
+        $res1 = $db->query('CALL getMyAlbumDetails(' . session()->get('id') . ')')->getResultArray();
         $res2 = $db->table('photos')->get()->getResultArray();
         $res3 = $db->table('like_photos')->get()->getResultArray();
         echo json_encode(
@@ -242,13 +235,7 @@ class Home extends BaseController
     public function getAlbumByCategory($cat_id)
     {
         $db = db_connect();
-
-        $res = $db->table('photos')->select('album.album_name, users.username, photo_name, photos.description, location, photos.created_at')
-            ->join('album', 'album.id = photos.album_id')
-            ->join('users', 'users.id = album.user_id')
-            ->where('album.category_id', $cat_id)
-            ->get()
-            ->getResultObject();
+        $res = $db->query('CALL getAlbumByCategory(' . $cat_id . ')')->getResultArray();
 
         echo json_encode($res);
     }
