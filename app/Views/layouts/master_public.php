@@ -39,7 +39,7 @@
 
 <body>
     <?php if (session()->has('pesan')) : ?>
-  <script>
+        <script>
             function errorSwal() {
                 Swal.fire({
                     icon: 'error',
@@ -124,12 +124,12 @@
                         <ul class="d-flex justify-content-center align-item-center">
                             <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Explore</a></li>
                             <?php if (session()->has('id')) : ?>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('my-photos') ?>">My Photos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('add-photo') ?>">Add Photo</a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('add-album') ?>">Add Album</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url('my-photos') ?>">My Photos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url('add-photo') ?>">Add Photo</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url('add-album') ?>">Add Album</a></li>
                             <?php endif; ?>
-                            <?php if(session()->get('role') == 'admin') : ?>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('dashboard') ?>">Dashboard</a></li>
+                            <?php if (session()->get('role') == 'admin') : ?>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url('dashboard') ?>">Dashboard</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>

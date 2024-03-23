@@ -136,6 +136,18 @@
                                     <span>Data Album<span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="backup()">
+                                    <i class="fad fa-database"></i><span class="path1"></span><span class="path2"></span></i>
+                                    <span>Backup Database<span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="javascript:void(0)" onclick="restore()">
+                                    <i class="fad fa-database"></i><span class="path1"></span><span class="path2"></span></i>
+                                    <span>Restore Database<span>
+                                </a>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -200,7 +212,63 @@
     <script src="/assets/js/theme_change.js"></script>
     <script src="/assets/js/pages/validation.js"></script>
     <script src="/assets/js/pages/form-validation.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loader').hide();
+        });
 
+        function backup() {
+            $('#loader').show();
+            $.ajax({
+                url: '<?= base_url('Utility/doBackup') ?>',
+                type: 'GET',
+                success: function(response) {
+                    $('#loader').hide();
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                },
+                error: function() {
+                    $('#loader').hide();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Backup database gagal',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+
+        function restore() {
+            $('#loader').show();
+            $.ajax({
+                url: '<?= base_url('Utility/doRestore') ?>',
+                type: 'GET',
+                success: function(response) {
+                    $('#loader').hide();
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                },
+                error: function(xhr, status, error) {
+                    $('#loader').hide();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Restore database gagal ' + xhr.responseJSON.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+    </script>
     <?= $this->renderSection('script') ?>
 </body>
 

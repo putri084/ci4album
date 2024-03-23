@@ -1,16 +1,6 @@
 <?= $this->extend('layouts/master_public') ?>
 
 <?= $this->section('content') ?>
-<!-- <div class="site-breadcrumb" style="background: url(assets/img/breadcrumb/01.jpg)">
-    <div class="container">
-        <h2 class="breadcrumb-title">Login</h2>
-        <ul class="breadcrumb-menu">
-            <li><a href="index-2.html">Home</a></li>
-            <li class="active">Login</li>
-        </ul>
-    </div>
-</div> -->
-
 
 <div class="auth-area py-80">
     <div class="container">

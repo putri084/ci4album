@@ -42,14 +42,11 @@ class Users extends BaseController
 			$ops .= '</div>';
 			$data['data'][$key] = array(
 				$no,
-				$value->id,
 				$value->fullname,
 				$value->username,
-				$value->avatar,
 				$value->email,
 				$value->address,
 				$value->role == 1 ? 'Admin' : 'User',
-
 				$ops
 			);
 			$no++;
