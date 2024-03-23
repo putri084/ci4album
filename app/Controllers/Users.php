@@ -20,6 +20,9 @@ class Users extends BaseController
 
 	public function index()
 	{
+		if(session()->get('role') == 'user') {
+            return redirect()->to('/');
+        }
 
 		$data = [
 			'controller'    	=> ucwords('users'),

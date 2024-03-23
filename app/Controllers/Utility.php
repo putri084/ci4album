@@ -11,6 +11,9 @@ class Utility extends BaseController
 
     public function doBackup()
     {
+        if(session()->get('role') == 'user') {
+            return redirect()->to('/');
+        }
         $tglSekarang = date('Y-m-d');
 
         $dbHost = getenv('database.default.hostname');
