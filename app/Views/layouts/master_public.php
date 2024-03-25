@@ -190,13 +190,13 @@
                             &copy; Copyright <span id="date"></span> <a href="#"> Aprillia Gallery </a> All Rights Reserved.
                         </p>
                     </div>
-                    <div class="col-md-6 align-self-center">
+                    <!-- <div class="col-md-6 align-self-center">
                         <ul class="footer-menu">
                             <li><a href="#">Support</a></li>
                             <li><a href="#">Terms Of Services</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

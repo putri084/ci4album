@@ -20,11 +20,7 @@
                         <p data-animation="fadeInRight" data-delay="1s">
                             Easily explore your photo collection with our engaging gallery app. Discover the beauty in every image, enhance your photo experience, and frame unforgettable moments with the new features we present.
                         </p>
-                        <div class="hero-btn" data-animation="fadeInUp" data-delay="1.25s">
-                            <a href="#" class="theme-btn"><span class="far fa-paper-plane"></span>Explore
-                                More</a>
-                            <a href="#" class="theme-btn theme-btn2"><span class="far fa-pen-swirl"></span>Create Now</a>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
@@ -100,7 +96,7 @@
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="item">
                     <div class="item-img" style="max-height:200px;">
-                        <a href="<?=base_url() ?>detailfoto/${response.photos[j].url_title}"><img src="/uploads/${response.photos[j].location}" alt></a>
+                        <a href="<?= base_url() ?>detailfoto/${response.photos[j].url_title}"><img src="/uploads/${response.photos[j].location}" alt></a>
                     </div>
                     <div class="item-content">
                         <h4 class="item-title"><a href="#">${response.photos[j].photo_name}</a></h4>
@@ -150,23 +146,28 @@
 
     function sendComment() {
         if (sesiLogin == true) {
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url('home/sendComment') ?>",
-                data: {
-                    photo_id: $("#photo-id").val(),
-                    comment: $("#comment-type").val()
-                },
-                dataType: "JSON",
-                success: function(response) {
-                    $('#comment-type').val('')
-                    callGetComment($("#photo-id").val())
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Status: " + textStatus);
-                    alert("Error: " + errorThrown);
-                }
-            });
+            if ($("#comment-type").val() !== '') {
+                $.ajax({
+                    type: "POST",
+                    url: "<?= base_url('home/sendComment') ?>",
+                    data: {
+                        photo_id: $("#photo-id").val(),
+                        comment: $("#comment-type").val()
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        $('#comment-type').val('')
+                        callGetComment($("#photo-id").val())
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert("Error: " + errorThrown);
+                    }
+                });
+            } else {
+                alert("Silahkan ketik komentar terlebih dahulu!")
+            }
+
         } else {
             alert("Silahkan login dulu")
         }

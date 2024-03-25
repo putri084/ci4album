@@ -20,9 +20,6 @@ class Users extends BaseController
 
 	public function index()
 	{
-		if(session()->get('role') == 'user') {
-            return redirect()->to('/');
-        }
 
 		$data = [
 			'controller'    	=> ucwords('users'),
@@ -47,9 +44,10 @@ class Users extends BaseController
 				$no,
 				$value->fullname,
 				$value->username,
+				$value->avatar,
 				$value->email,
 				$value->address,
-				$value->role == 1 ? 'Admin' : 'User',
+				$value->role == 1 ? 'Admin' : 'Pengguna',
 				$ops
 			);
 			$no++;
@@ -95,8 +93,7 @@ class Users extends BaseController
 			'avatar' => ['label' => 'Avatar', 'rules' => 'required|min_length[0]|max_length[200]'],
 			'email' => ['label' => 'Email', 'rules' => 'required|valid_email|min_length[0]|max_length[100]'],
 			'address' => ['label' => 'Address', 'rules' => 'permit_empty|min_length[0]'],
-			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]'],
-
+			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]|max_length[11]'],
 		]);
 
 		if ($this->validation->run($fields) == FALSE) {
@@ -128,7 +125,6 @@ class Users extends BaseController
 		$fields['fullname'] = $this->request->getPost('fullname');
 		$fields['username'] = $this->request->getPost('username');
 		$fields['password'] = password_hash((string)$this->request->getPost('password'), PASSWORD_DEFAULT);
-
 		$fields['avatar'] = $this->request->getPost('avatar');
 		$fields['email'] = $this->request->getPost('email');
 		$fields['address'] = $this->request->getPost('address');
@@ -142,7 +138,7 @@ class Users extends BaseController
 			'avatar' => ['label' => 'Avatar', 'rules' => 'required|min_length[0]|max_length[200]'],
 			'email' => ['label' => 'Email', 'rules' => 'required|valid_email|min_length[0]|max_length[100]'],
 			'address' => ['label' => 'Address', 'rules' => 'permit_empty|min_length[0]'],
-			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]'],
+			'role' => ['label' => 'Role', 'rules' => 'required|numeric|min_length[0]|max_length[11]'],
 
 		]);
 

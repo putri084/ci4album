@@ -42,14 +42,7 @@
                             <label>Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Your Password">
                         </div>
-                        <div class="auth-check">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value id="agree">
-                                <label class="form-check-label" for="agree">
-                                    I agree with the <a href="#">Terms Of Service.</a>
-                                </label>
-                            </div>
-                        </div>
+                       
                         <div class="auth-btn">
                             <button type="button" onclick="register()" class="theme-btn"><span class="far fa-paper-plane"></span>Sign
                                 Up</button>

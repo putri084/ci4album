@@ -54,12 +54,8 @@
 
                 <div class="navbar-custom-menu r-side">
                     <ul class="nav navbar-nav">
-                        <li class="btn-group nav-item d-lg-inline-flex d-none">
-                            <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen" title="Full Screen">
-                                <i class="icon-Expand-arrows"><span class="path1"></span><span class="path2"></span></i>
-                            </a>
-                        </li>
-                        <li class="btn-group d-lg-inline-flex d-none">
+                        
+                        <!-- <li class="btn-group d-lg-inline-flex d-none">
                             <div class="app-menu">
                                 <div class="search-bx mx-5">
                                     <form>
@@ -72,11 +68,11 @@
                                     </form>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
 
 
                         <!-- User Account-->
-                        <li class="dropdown user user-menu">
+                        <!-- <li class="dropdown user user-menu">
                             <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="User">
                                 <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
                             </a>
@@ -86,7 +82,7 @@
                                     <a class="dropdown-item" href="<?= base_url('logout') ?>"><i class="ti-lock text-muted me-2"></i> Logout</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         <!-- Control Sidebar Toggle Button -->
 
@@ -121,7 +117,7 @@
                             <li>
                                 <a href="category">
                                     <i class="fad fa-list"></i><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Data Cateegory</span>
+                                    <span>Data Category</span>
                                 </a>
                             </li>
                             <li>

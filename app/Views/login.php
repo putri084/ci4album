@@ -23,12 +23,12 @@
                         </div>
                         <div class="auth-check">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value id="remember">
+                                <!-- <input class="form-check-input" type="checkbox" value id="remember">
                                 <label class="form-check-label" for="remember">
                                     Remember Me
-                                </label>
+                                </label> -->
                             </div>
-                            <a href="forgot-password.html">Forgot Password?</a>
+                            <a href="<?= base_url('lupapassword') ?>">Forgot Password?</a>
                         </div>
                         <div class="auth-btn">
                             <button type="button" onclick="checkLogin()" class="theme-btn"><span class="far fa-sign-in"></span>Sign
